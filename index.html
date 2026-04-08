@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>和美装師®︎｜Kimono Styling Direction</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1410;
+    --ash: #8a7f74;
+    --paper: #f5f0eb;
+    --gold: #b8965a;
+    --gold-light: #d4b07a;
+    --cream: #faf7f2;
+    --divider: rgba(184,150,90,0.3);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Serif JP', serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-weight: 300;
+    line-height: 1.9;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100svh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    position: relative;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 40%, rgba(184,150,90,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(184,150,90,0.05) 0%, transparent 60%);
+  }
+
+  /* 縦線装飾 */
+  .hero-line {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(184,150,90,0.4) 30%, rgba(184,150,90,0.4) 70%, transparent);
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  .hero-line:nth-child(1) { left: 12%; animation-delay: 0.3s; }
+  .hero-line:nth-child(2) { left: 88%; animation-delay: 0.6s; }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+  @keyframes slideUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+  .hero-nav {
+    position: relative; z-index: 2;
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(184,150,90,0.2);
+  }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    color: var(--gold-light);
+    letter-spacing: 0.2em;
+    font-weight: 300;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s 0.5s forwards;
+  }
+
+  .logo-ja {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 0.65rem;
+    color: var(--ash);
+    letter-spacing: 0.3em;
+    display: block;
+    margin-top: 0.2rem;
+  }
+
+  .nav-contact {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--ash);
+    text-decoration: none;
+    border: 1px solid rgba(184,150,90,0.3);
+    padding: 0.6rem 1.5rem;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fadeIn 1s 0.8s forwards;
+  }
+  .nav-contact:hover { background: rgba(184,150,90,0.1); color: var(--gold-light); }
+
+  .hero-body {
+    position: relative; z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 8rem) clamp(2rem, 8vw, 8rem);
+  }
+
+  .hero-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.7rem, 1.2vw, 0.85rem);
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideUp 1s 0.6s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 200;
+    color: #f0ebe3;
+    line-height: 1.6;
+    letter-spacing: 0.1em;
+    max-width: 700px;
+    opacity: 0;
+    animation: slideUp 1s 0.9s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--gold-light);
+    font-size: 1.15em;
+  }
+
+  .hero-sub {
+    margin-top: 3rem;
+    font-size: clamp(0.8rem, 1.4vw, 0.9rem);
+    color: var(--ash);
+    letter-spacing: 0.2em;
+    line-height: 2.2;
+    max-width: 500px;
+    opacity: 0;
+    animation: slideUp 1s 1.2s forwards;
+  }
+
+  .hero-scroll {
+    position: relative; z-index: 2;
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s 1.8s forwards;
+  }
+  .hero-scroll span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    color: var(--ash);
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 60px; height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: clamp(5rem, 10vw, 10rem) clamp(2rem, 8vw, 8rem); }
+
+  .section-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 80px;
+    height: 1px;
+    background: var(--divider);
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy { background: var(--cream); }
+
+  .philosophy-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(3rem, 6vw, 7rem);
+    align-items: start;
+    max-width: 1100px;
+  }
+
+  .philosophy-headline {
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 200;
+    line-height: 1.7;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+
+  .philosophy-headline strong {
+    display: block;
+    font-weight: 400;
+    color: var(--gold);
+    font-size: 0.55em;
+    letter-spacing: 0.3em;
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+  }
+
+  .philosophy-body {
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    color: #4a4138;
+    line-height: 2.4;
+    letter-spacing: 0.08em;
+    padding-top: 0.5rem;
+  }
+
+  .philosophy-body p + p { margin-top: 1.8em; }
+
+  /* ── SERVICES ── */
+  .services { background: var(--paper); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+    max-width: 1100px;
+    margin-top: 1rem;
+  }
+
+  .service-card {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 2px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s;
+  }
+  .service-card:hover::before { height: 100%; }
+  .service-card:hover { background: #fdf9f3; }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--divider);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .service-title {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .service-desc {
+    font-size: 0.82rem;
+    color: var(--ash);
+    line-height: 2;
+    letter-spacing: 0.08em;
+  }
+
+  .service-tags {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--divider);
+    color: var(--ash);
+  }
+
+  /* ── ACHIEVEMENTS ── */
+  .achievements { background: var(--ink); }
+
+  .achievements .section-label { color: var(--gold); }
+
+  .ach-intro {
+    font-size: clamp(0.85rem, 1.4vw, 0.95rem);
+    color: rgba(240,235,227,0.6);
+    letter-spacing: 0.1em;
+    margin-bottom: 4rem;
+    max-width: 500px;
+  }
+
+  .brand-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    max-width: 900px;
+    margin-bottom: 5rem;
+  }
+
+  .brand-item {
+    padding: 2.5rem 2rem;
+    background: rgba(255,255,255,0.03);
+    text-align: center;
+    border: 1px solid rgba(184,150,90,0.1);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .brand-item:hover { background: rgba(184,150,90,0.06); border-color: rgba(184,150,90,0.3); }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.95rem, 2vw, 1.3rem);
+    color: rgba(240,235,227,0.75);
+    letter-spacing: 0.2em;
+    font-weight: 300;
+  }
+
+  .media-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .media-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    max-width: 800px;
+  }
+
+  .media-item {
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: rgba(240,235,227,0.5);
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(184,150,90,0.15);
+    transition: all 0.3s;
+  }
+  .media-item:hover { color: var(--gold-light); border-color: rgba(184,150,90,0.4); }
+
+  /* ── STRENGTHS ── */
+  .strengths { background: var(--cream); }
+
+  .strength-list { max-width: 900px; }
+
+  .strength-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--divider);
+    align-items: start;
+  }
+  .strength-item:first-child { border-top: 1px solid var(--divider); }
+
+  .strength-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    padding-top: 0.3rem;
+  }
+
+  .strength-content h3 {
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.8rem;
+  }
+
+  .strength-content p {
+    font-size: 0.85rem;
+    color: var(--ash);
+    line-height: 2.2;
+    letter-spacing: 0.08em;
+  }
+
+  /* ── AREA ── */
+  .area { background: var(--paper); }
+
+  .area-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    max-width: 900px;
+  }
+
+  .area-text h2 {
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .area-text p {
+    font-size: 0.88rem;
+    color: var(--ash);
+    line-height: 2.3;
+    letter-spacing: 0.08em;
+  }
+
+  .area-badge {
+    text-align: center;
+    padding: 4rem 3rem;
+    border: 1px solid var(--divider);
+    position: relative;
+  }
+
+  .area-badge::before, .area-badge::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .area-badge::before { top: 12px; left: 12px; border-width: 1px 0 0 1px; }
+  .area-badge::after { bottom: 12px; right: 12px; border-width: 0 1px 1px 0; }
+
+  .area-badge-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .area-badge-main {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    line-height: 1.8;
+  }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--ink); min-height: 70vh; display: flex; flex-direction: column; justify-content: center; }
+
+  .contact-inner { max-width: 700px; }
+
+  .contact-inner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    color: #f0ebe3;
+    letter-spacing: 0.15em;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .contact-inner p {
+    font-size: 0.88rem;
+    color: rgba(240,235,227,0.5);
+    letter-spacing: 0.12em;
+    line-height: 2.3;
+    margin-bottom: 4rem;
+  }
+
+  .contact-btns {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    padding: 1.2rem 2.5rem;
+    transition: all 0.35s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-100%);
+    transition: transform 0.35s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-secondary {
+    border: 1px solid rgba(184,150,90,0.4);
+    color: var(--gold-light);
+  }
+  .btn-secondary:hover {
+    background: rgba(184,150,90,0.08);
+    border-color: var(--gold);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0f0d0a;
+    padding: 3rem clamp(2rem, 8vw, 8rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    border-top: 1px solid rgba(184,150,90,0.1);
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    color: rgba(184,150,90,0.6);
+  }
+
+  .footer-copy {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.2);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero-nav { padding: 1.8rem 1.5rem; }
+    .hero-body { padding: 3rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+
+    .philosophy-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .area-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .strength-item { grid-template-columns: 1fr; gap: 0.8rem; }
+
+    .contact-btns { flex-direction: column; }
+    .btn { justify-content: center; }
+
+    footer { flex-direction: column; text-align: center; }
+    .hero-line { display: none; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <div class="hero-line"></div>
+
+  <nav class="hero-nav">
+    <div class="logo">
+      Wabisoshi®︎
+      <span class="logo-ja">和美装師®︎｜Kimono Styling Direction</span>
+    </div>
+    <a href="#contact" class="nav-contact">Contact</a>
+  </nav>
+
+  <div class="hero-body">
+    <p class="hero-en">Kimono Styling Direction</p>
+    <h1 class="hero-title">
+      和装は<em>"着付け"</em>ではなく<br>
+      <em>"演出"</em>である。
+    </h1>
+    <p class="hero-sub">
+      役柄・シーン・動きを前提に<br>
+      着付けとスタイリングの設計をします
+    </p>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <div class="reveal">
+      <p class="section-label">Philosophy</p>
+      <h2 class="philosophy-headline">
+        同じ着物でも、<br>役柄と見せ方で<br>印象は変わる。
+        <strong>Kimono is storytelling.</strong>
+      </h2>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="philosophy-body">
+        <p>
+          人物設定、シーン、動き——すべてを前提に、専門技術で着付けとスタイリングを設計します。
+        </p>
+        <p>
+          カメラに映ったときの見え方を熟知した、撮影専門の和装スタイリング。美しく着せるだけではなく、映像や広告の中で"機能する"和装をつくります。
+        </p>
+        <p>
+          現場の流れを理解した上で、スムーズかつ柔軟に対応します。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <p class="section-label reveal">Services</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-num">01</div>
+      <h3 class="service-title">映像・広告 和装スタイリング</h3>
+      <p class="service-desc">役柄に応じた着付け設計と、衣裳全体のスタイリングディレクション。型物〜崩し、イメージに合わせて対応します。</p>
+      <div class="service-tags">
+        <span class="tag">CM</span>
+        <span class="tag">広告</span>
+        <span class="tag">MV</span>
+        <span class="tag">TV</span>
+        <span class="tag">MOVIE</span>
+        <span class="tag">WEB</span>
+        <span class="tag">カタログ</span>
+        <span class="tag">YouTube</span>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <h3 class="service-title">着付け設計</h3>
+      <p class="service-desc">役柄に応じた着付け設計。座る・立つ・歩く・走るなど、あらゆる動きを想定した仕上がりに整えます。</p>
+      <div class="service-tags">
+        <span class="tag">撮影現場</span>
+        <span class="tag">ロケ</span>
+        <span class="tag">スタジオ</span>
+      </div>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <h3 class="service-title">スタイリングディレクション</h3>
+      <p class="service-desc">着物の種類を問わず、衣裳全体のコーディネートディレクションから現場対応まで一貫して担当します。</p>
+      <div class="service-tags">
+        <span class="tag">着物全般</span>
+        <span class="tag">イベント</span>
+        <span class="tag">出張対応</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements">
+  <p class="section-label reveal">Achievements</p>
+  <p class="ach-intro reveal">有名ブランド・企業に携わってきました。（一部）</p>
+
+  <div class="brand-grid">
+    <div class="brand-item reveal"><span class="brand-name">ANA</span></div>
+    <div class="brand-item reveal reveal-delay-1"><span class="brand-name">KOSÉ</span></div>
+    <div class="brand-item reveal reveal-delay-2"><span class="brand-name">SUNTORY</span></div>
+    <div class="brand-item reveal reveal-delay-3"><span class="brand-name">DHC</span></div>
+    <div class="brand-item reveal"><span class="brand-name">かねふく</span></div>
+  </div>
+
+  <p class="media-title reveal">映像・イベント・メディア実績（一部）</p>
+  <div class="media-list">
+    <span class="media-item reveal">乃木坂46</span>
+    <span class="media-item reveal reveal-delay-1">ニコニコ超会議</span>
+    <span class="media-item reveal reveal-delay-2">ちはやふる</span>
+    <span class="media-item reveal reveal-delay-3">エガフェス2024</span>
+    <span class="media-item reveal">ぷっすま</span>
+    <span class="media-item reveal reveal-delay-1">トゥルルさまぁ〜ず</span>
+  </div>
+</section>
+
+<!-- STRENGTHS -->
+<section class="strengths">
+  <p class="section-label reveal">Strengths</p>
+  <div class="strength-list">
+    <div class="strength-item reveal">
+      <span class="strength-num">01</span>
+      <div class="strength-content">
+        <h3>役柄・イメージに応じた着付け設計</h3>
+        <p>人物設定・シーン・動きをすべて前提に着付けを設計します。「きれいに着せる」だけでなく、映像の中で機能する和装を追求します。</p>
+      </div>
+    </div>
+    <div class="strength-item reveal">
+      <span class="strength-num">02</span>
+      <div class="strength-content">
+        <h3>映像で違和感が出ない和装</h3>
+        <p>カメラに映ったときの見え方を熟知した、撮影専門の和装スタイリング。足元・衿・帯まわりなど、映像で気になりやすいポイントを徹底的に整えます。</p>
+      </div>
+    </div>
+    <div class="strength-item reveal">
+      <span class="strength-num">03</span>
+      <div class="strength-content">
+        <h3>現場理解に基づく対応</h3>
+        <p>撮影現場の流れを理解した上で、スムーズかつ柔軟に対応します。タイムスケジュールを把握し、現場全体のテンポを崩さない動き方をします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="area">
+  <div class="area-inner">
+    <div class="reveal">
+      <p class="section-label">Coverage Area</p>
+      <div class="area-text">
+        <h2>全国どこへでも<br>出張対応いたします</h2>
+        <p>ロケ地・撮影スタジオを問わず、全国対応可能です。遠方のご依頼もお気軽にご相談ください。</p>
+      </div>
+    </div>
+    <div class="area-badge reveal reveal-delay-2">
+      <span class="area-badge-en">Nationwide</span>
+      <p class="area-badge-main">全国<br>対応可能</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label reveal" style="color:var(--gold);">Contact</p>
+    <h2 class="reveal">Get in touch.</h2>
+    <p class="reveal">ご依頼・ご相談はお気軽にどうぞ。<br>Instagram DM またはメールにてご連絡ください。</p>
+    <div class="contact-btns">
+      <a href="https://www.instagram.com/wasoubi.yamatonadeshiko/" class="btn btn-primary reveal" target="_blank" rel="noopener">
+        <span>Instagram DM</span>
+      </a>
+      <a href="mailto:info@wasou-bi.com?subject=和装スタイリング案件のご相談" class="btn btn-secondary reveal reveal-delay-1" target="_blank" rel="noopener">
+        メールで問い合わせる
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">和美装師®︎ Wabisoshi®︎</div>
+  <p class="footer-copy">© 2025 Kimono Styling Direction. All rights reserved.</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
